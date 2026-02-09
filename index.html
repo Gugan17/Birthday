@@ -690,6 +690,21 @@
     display: none;
 }
 
+/* Hide See Me First initially */
+#seeMeFirst {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* When visible */
+#seeMeFirst.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
     </style>
 </head>
 <body>
@@ -920,7 +935,7 @@ Not everything happens on time. This phase is about patience, persistence, and t
         <div class="final-message-container">
             <p class="final-message" id="typingMessage"></p>
             <button class="btn-share" id="shareLove">
-                <i class="fas fa-heart me-2"></i>Share the Love
+                <i class="fas fa-heart me-2"></i>Click me and celebrate!
             </button>
         </div>
     </section>
@@ -1200,20 +1215,20 @@ Happy Birthday! 🎂🎉`;
             });
             
             // Create share popup
-            const shareText = `Happy Birthday Pradiksha! 🎉 Wishing you a year filled with success, joy, and amazing achievements!`;
+            // const shareText = `Happy Birthday Pradiksha! 🎉 Wishing you a year filled with success, joy, and amazing achievements!`;
             
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Happy Birthday Pradiksha!',
-                    text: shareText,
-                    url: window.location.href
-                });
-            } else {
-                // Fallback - copy to clipboard
-                navigator.clipboard.writeText(shareText + ' ' + window.location.href).then(() => {
-                    alert('Birthday message copied to clipboard! Share it with your friends! 🎉');
-                });
-            }
+            // if (navigator.share) {
+            //     navigator.share({
+            //         title: 'Happy Birthday Pradiksha!',
+            //         text: shareText,
+            //         url: window.location.href
+            //     });
+            // } else {
+            //     // Fallback - copy to clipboard
+            //     navigator.clipboard.writeText(shareText + ' ' + window.location.href).then(() => {
+            //         alert('Birthday message copied to clipboard! Share it with your friends! 🎉');
+            //     });
+            // }
         });
         
         // Mouse parallax for decorations
@@ -1240,6 +1255,14 @@ Happy Birthday! 🎂🎉`;
             document.querySelector('.hero-content').style.opacity = '1';
             document.querySelector('.hero-content').style.transform = 'translateY(0)';
         });
+
+        // Show "See Me First" button after 10 seconds
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById('seeMeFirst').classList.add('show');
+    }, 10000); // 10 seconds
+});
+
     </script>
 </body>
 </html>
